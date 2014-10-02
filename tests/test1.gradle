@@ -1,0 +1,23 @@
+Properties props = new Properties()
+props.load(new FileInputStream(rootDir.toString() + "/gradle.properties"))
+
+def testRepo = props.get('testRepo')
+def testPackageName = props.get('testPackageName')
+def testDesc = props.get('testDesc')
+def testVersion = props.get('testVersion')
+
+bintray {
+    user = bintrayUser
+    key = bintrayKey
+    publications = ['mavenJava'] 
+    pkg {
+        repo = testRepo
+        name = testPackageName
+        desc = testDesc
+        licenses = ['Apache-2.0']
+        labels = ['jfrog', 'samples']
+        version {
+            name = testVersion
+        }
+    }
+}
